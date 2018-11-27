@@ -1,0 +1,73 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+.width {
+    width: 640px;
+}
+.height {
+    height: 400px;
+}
+.margin {
+    margin: 200px auto 0;
+}
+.position-abs-0 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.demo-blur-main {
+    position: relative;
+    width: 640px;
+    height: 400px;
+    margin: 200px auto 0;
+}
+.demo-blur-main .demo-blur-img {
+    width: 640px;
+    height: 400px;
+    display: block;
+    filter: blur(20px);
+    -webkit-filter: blur(20px);
+    -ms-filter: blur(20px);
+    -moz-filter: blur(20px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+.demo-blur-main #demo-canvas {
+    display: block;
+    margin: 0 auto;
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.demo-blur-main .button {
+    position: absolute;
+    display: block;
+    width: 100px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    font-family: arial;
+    color: #fff;
+    text-decoration: none;
+    z-index: 999;
+}
+.demo-blur-main #button-reset {
+    left: 20%;
+    bottom: 30px;
+    background-color: #ff5555;
+}
+.demo-blur-main #button-reset:hover {
+    background-color: #ff9090;
+}
+.demo-blur-main #button-show {
+    right: 20%;
+    bottom: 30px;
+    background-color: #5f5bff;
+}
+.demo-blur-main #button-show:hover {
+    background-color: #9d9bff;
+}

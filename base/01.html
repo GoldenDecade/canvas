@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ADACB0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="300" height="300">
+    你的浏览器还不支持canvas
+</canvas>
+<script>
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+    // 设置对象起始点和终点
+    context.moveTo(10, 10) // 把路径移动到画布中的指定点，不创建线条
+    context.lineTo(200, 200) // 添加一个新点，然后在画布中创建从该点到最后指定点的线条
+    // 设置样式
+    context.lineWidth = 2
+    context.strokeStyle = '#F5270B'
+
+    // 绘制
+    context.stroke()
+
+    console.log(context.strokeStyle);
+</script>
+</body>
+</html>

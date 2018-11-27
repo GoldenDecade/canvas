@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ADACB0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="700">
+    你的浏览器还不支持canvas
+</canvas>
+<script>
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+
+//    var lrd = context.createLinearGradient(xstart, ystart, xend, yend)  //线性渐变
+//    lrd.addColorStop(stop, color)为线性渐变添加颜色，    stop为0--1
+//    context.fillStyle = lrd 将赋值给context
+    var lrd = context.createLinearGradient(10, 10, 100, 350)
+    lrd.addColorStop(0, '#1EF9F7')
+    lrd.addColorStop(0.25, '#FC0F31')
+    lrd.addColorStop(0.5, '#ECF811')
+    lrd.addColorStop(0.75, '#2F0AF1')
+    lrd.addColorStop(1, '#160303')
+    context.fillStyle = lrd
+    context.fillRect(10, 10, 100, 350)
+
+
+
+//    var grd = context.createRadialGradient(x0, y0, r0, x1, y1, r1) // 径向渐变  接收起始圆心的坐标和圆半径以及终点圆心的坐标和圆的半径
+    var grd = context.createRadialGradient(325, 200, 0, 325, 200, 200)
+    grd.addColorStop(0, '#1EF9F7')
+    grd.addColorStop(0.25, '#FC0F31')
+    grd.addColorStop(0.5, '#ECF811')
+    grd.addColorStop(0.75, '#2F0AF1')
+    grd.addColorStop(1, '#00ff00')
+    context.fillStyle = grd
+    context.fillRect(150, 10, 350, 350)
+
+
+//    位图填充
+    var bgimg = new Image()
+    bgimg.src = 'warning.png'
+    bgimg.onload = function(){
+        var pattern = context.createPattern(bgimg, 'repeat')// 在指定的方向内重复指定的元素；元素可以是图片、视频，或者其他canvas元素；
+        context.fillStyle = pattern
+        context.strokeStyle = '#F20B0B'
+        context.fillRect(600, 100, 200, 200)
+        context.strokeRect(600, 100, 200, 200)
+    }
+
+
+</script>
+</body>
+</html>

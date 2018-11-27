@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .content {
+            margin: 100px auto 0;
+            width: 640px;
+            height: 400px;
+            position: relative;
+        }
+        .content img {
+            width: 640px;
+            height: 400px;
+            -webkit-filter: blur(20px);
+            filter: blur(20px);
+
+        }
+        canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            /*z-index: 10;*/
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <img src="./img/demo.jpg" alt="">
+    <canvas width="640" height="400" id="canvas"></canvas>
+    <button id="reset">reset</button>
+    <button id="show">show</button>
+</div>
+<script>
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+
+    var canvasWidth = 640, canvasHeight = 400, r = 30;
+
+    var region;
+
+    var img = new Image()
+    img.src = './img/demo.jpg'
+    img.onload = function(){
+        initCanvas(img)
+    }
+    function initCanvas(img) {
+        region = {
+            x: Math.random() * (canvasWidth - 2*r) + r,
+            y: Math.random() * (canvasWidth - 2*r) + r,
+            r: r
+        }
+        draw(region, img)
+    }
+    function draw(region, img){
+        context.clearRect(0, 0, canvasWidth, canvasHeight) // 在给定的矩形内清除指定的像素
+        context.save()
+        context.beginPath() // 起始一条路径或重置当前路径
+        context.arc(region.x, region.y, region.r, 0, Math.PI * 2)
+        context.clip()// 从原始画布中剪切任意形状和尺寸； 一旦剪切了某个区域，则所有之后的绘图都会被限制在被剪切的区域内（不能访问画布上的其他区域）
+        context.drawImage(img, 0, 0)
+        context.restore()
+    }
+    var show = document.getElementById('show')
+    var reset = document.getElementById('reset')
+    show.onclick = function(){
+        var animation = setInterval(function(){
+            region.x = canvasWidth / 2
+            region.y = canvasHeight /2
+            region.r += 20
+            if(region.r < canvasWidth/2){
+                draw(region, img)
+            }else {
+                clearInterval(animation)
+            }
+        }, 30)
+    }
+    reset.onclick = function(){
+        initCanvas(img)
+    }
+</script>
+</body>
+</html>

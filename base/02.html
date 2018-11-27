@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ADACB0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="700">
+    你的浏览器还不支持canvas
+</canvas>
+<script>
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+    context.beginPath()
+    context.moveTo(100, 100)
+    context.lineTo(700, 100)
+    context.lineTo(700, 400)
+    context.lineWidth = 2
+    context.strokeStyle = '#F5270B'
+    context.stroke()
+
+    // 如果需要重新选择起始点，则需要通过moveTo()方法。如果需要对不同的线段设置样式，则需要通过context.beginPath()重新开启一条路径
+    context.beginPath()
+    context.moveTo(100, 200) // 这里的moveTo换成lineTo效果是一样的
+    context.lineTo(600, 200)
+    context.lineTo(600, 400)
+    context.strokeStyle = '#0D25F6' // strokeStyle的颜色有新的值，则覆盖上面设置的值； lineWidth没有新的值，则按上面设置的值显示
+    context.stroke()
+
+</script>
+</body>
+</html>

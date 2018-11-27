@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ADACB0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="700">
+    你的浏览器还不支持canvas
+</canvas>
+<script>
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+    // 测试lineCap属性
+    // 设置基准线便于观察
+    context.moveTo(10, 10)
+    context.lineTo(10, 200)
+    context.moveTo(200, 10)
+    context.lineTo(200, 200)
+    context.lineWidth = 1
+    context.stroke()
+
+    // butt
+    context.beginPath()
+    context.moveTo(10, 50)
+    context.lineTo(200, 50)
+    context.lineCap = 'butt'
+    context.lineWidth = 10
+    context.stroke()
+    // round
+    context.beginPath()
+    context.moveTo(10, 80)
+    context.lineTo(200, 80)
+    context.lineCap = 'round'
+    context.lineWidth = 10
+    context.stroke()
+    // square
+    context.beginPath()
+    context.moveTo(10, 100)
+    context.lineTo(200, 100)
+    context.lineCap = 'square'
+    context.lineWidth = 10
+    context.stroke()
+
+    // 测试lineJoin属性 当两条线交汇时设置或返回所创建边角的类型
+    // miter 尖角
+    // bevel 斜角
+    // round 圆角
+    context.beginPath()
+    context.moveTo(300, 50)
+    context.lineTo(450, 100)
+    context.lineTo(300, 150)
+    context.lineJoin = 'miter'
+    context.lineWidth = 10
+    context.stroke()
+    //round
+    context.beginPath();
+    context.moveTo(400,50);
+    context.lineTo(550,100);
+    context.lineTo(400,150);
+    context.lineJoin="round";
+    context.lineWidth="10";
+    context.stroke();
+    //square
+    context.beginPath();
+    context.moveTo(500,50);
+    context.lineTo(650,100);
+    context.lineTo(500,150);
+    context.lineJoin="bevel";
+    context.lineWidth="10";
+    context.stroke();
+
+    // 测试miterLimit  设置或返回最大斜接长度（默认为10），斜接长度指的是在两条线交汇处内角和外角之间的距离。 只有当lineJoin属性为miter时，miterLimit才有效
+    context.beginPath()
+    context.moveTo(700, 50)
+    context.lineTo(850, 100)
+    context.lineTo(700, 150)
+    context.lineJoin = 'miter'
+    context.miterLimit = '2'
+    context.lineWidth = 10
+    context.strokeStyle = '#2913EC'
+    context.stroke()
+</script>
+</body>
+</html>

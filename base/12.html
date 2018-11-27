@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ADACB0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="700">
+    你的浏览器还不支持canvas
+</canvas>
+<script>
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+    context.beginPath();
+    //设置是个顶点的坐标，根据顶点制定路径
+    for (var i = 0; i < 5; i++) {
+        context.lineTo(Math.cos((18+i*72)/180*Math.PI)*200+200,
+                -Math.sin((18+i*72)/180*Math.PI)*200+200);
+        context.lineTo(Math.cos((54+i*72)/180*Math.PI)*80+200,
+                -Math.sin((54+i*72)/180*Math.PI)*80+200);
+    }
+    context.closePath();
+    //设置边框样式以及填充颜色
+    context.lineWidth = 3
+    context.fillStyle = 'pink'
+    context.strokeStyle = '#000'
+    context.shadowColor = '#00ff00'
+    context.shadowOffsetX = 30
+    context.shadowOffsetY = 10
+    context.shadowBlur = 10
+    context.fill()
+    context.stroke()
+</script>
+</body>
+</html>

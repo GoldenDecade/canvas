@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        #point {
+            position: absolute;
+            left: 40px;
+            top: 35px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="300" height="300"></canvas>
+<canvas id="point" width="10" height="20"></canvas>
+<script>
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+    var lrd = context.createLinearGradient(40, 40, 240, 50)
+    lrd.addColorStop(0, '#1EF9F7')
+    lrd.addColorStop(0.25, '#FC0F31')
+    lrd.addColorStop(0.5, '#ECF811')
+    lrd.addColorStop(0.75, '#2F0AF1')
+    lrd.addColorStop(1, '#160303')
+    context.fillStyle = lrd
+    context.fillRect(40, 40, 200, 10)
+
+
+    var point = document.getElementById('point')
+    var ctx = point.getContext('2d')
+    ctx.fillStyle = '#000'
+    ctx.fillRect(0, 0, 10, 20)
+
+    point.addEventListener('touchmove', function(e){
+        e.preventDefault()
+        var touch = e.touches[0]
+        console.log(touch);
+
+    })
+
+
+</script>
+</body>
+</html>

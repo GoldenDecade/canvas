@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="format-detection" content="telephone=no"/>
+  <title>canvas绘制刻钟</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #ctx {
+      zoom: 0.5;
+    }
+  </style>
+</head>
+<body>
+<canvas id="ctx" width="800" height="800"></canvas>
+<script>
+  window.onload = ()=> {
+    console.log('onload');
+    const canvas = document.querySelector('#ctx');
+    const ctx = canvas.getContext('2d');
+    /*ctx.beginPath()
+    ctx.moveTo(200, 200);
+    ctx.arc(200, 200, 150, 0, 90 * Math.PI / 180, false); //顺时针： false； 逆时针： true
+    ctx.stroke();
+    ctx.closePath()
+
+    ctx.beginPath()
+    ctx.moveTo(200, 200);
+    ctx.arc(200, 200, 150, 0, -90 * Math.PI / 180, true); //顺时针： false； 逆时针： true
+    ctx.stroke();
+    ctx.closePath()
+    */
+    //将画布尺寸扩大为显示尺寸的2倍
+    // canvas.setAttribute('width', 400 * 2);
+    // canvas.setAttribute('height', 400 * 2);
+    // canvas.style.width = 400 + 'px';
+    // canvas.style.height = 400 + 'px';
+    function draw(x, y, r) {
+      let date = new Date();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
+      let h = (hours + minutes / 60 + seconds / 3600) * 30 ;// 时针角度
+      let m = (minutes + seconds / 60) * 6 ;// 时针角度
+      let s = seconds * 6;// 时针角度
+      ctx.beginPath()
+      for(let i = 0; i< 60; i++) {
+        ctx.moveTo(x, y)
+        ctx.arc(x, y, r, (i * 6 - 90) * Math.PI / 180, ((i + 1) * 6 - 90) * Math.PI / 180, false);
+      }
+      ctx.stroke()
+      ctx.closePath()
+
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+      ctx.arc(x, y, r * 19 / 20, 0, 360 * Math.PI / 180, false)
+      ctx.fillStyle = '#fff'
+      ctx.fill()
+      ctx.closePath()
+
+
+      ctx.beginPath()
+      ctx.lineWidth = 3;
+      for(let i = 0; i< 12; i++) {
+        ctx.moveTo(x, y)
+        ctx.arc(x, y, r, (i * 30 - 90) * Math.PI / 180, ((i + 1) * 30 - 90) * Math.PI / 180, false);
+      }
+      ctx.stroke()
+      ctx.closePath()
+
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+      ctx.arc(x, y, r * 18 / 20, 0, 360 * Math.PI / 180, false)
+      ctx.fillStyle = '#fff'
+      ctx.fill()
+      ctx.closePath()
+
+
+    //  时针
+      ctx.beginPath()
+      ctx.lineWidth = 5
+      ctx.moveTo(x, y)
+      ctx.arc(x, y, r * 12 / 20, (h - 90) * Math.PI / 180, (h - 90) * Math.PI / 180, false)
+      ctx.stroke();
+      ctx.closePath()
+
+
+    //  分针
+      ctx.beginPath()
+      ctx.lineWidth = 3
+      ctx.moveTo(x, y)
+      ctx.arc(x, y, r * 17 / 20, (m - 90) * Math.PI / 180, (m - 90) * Math.PI / 180, false)
+      ctx.stroke();
+      ctx.closePath()
+
+    //  秒针
+      ctx.beginPath()
+      ctx.lineWidth = 1
+      ctx.moveTo(x, y)
+      ctx.arc(x, y, r * 19 / 20, (s - 90) * Math.PI / 180, (s - 90) * Math.PI / 180, false)
+      ctx.stroke();
+      ctx.closePath()
+    }
+    setInterval(()=> draw(400, 400, 360), 1000)
+    draw(400, 400, 360);
+
+
+  }
+</script>
+<script id="__bs_script__">//<![CDATA[
+document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.24.4'><\/script>".replace("HOST", location.hostname));
+//]]></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ADACB0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="700">
+    你的浏览器还不支持canvas
+</canvas>
+<script>
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+
+    //    context.arcTo(x1, y1, x2, y2, r)  在画布上创建介于两个切线之间的弧/曲线
+    //    arcTo函数绘制的曲线的起始点需要通过moveTo()函数来设置
+    function createRoundRect(context, x1, y1, width, height, radius) {
+        context.moveTo(x1 + radius, y1)
+        context.lineTo(x1+width-radius, y1)
+        context.arcTo(x1+width, y1, x1+width, y1+radius, radius)
+        context.lineTo(x1+width, y1+height-radius)
+        context.arcTo(x1+width, y1+height, x1+width-radius, y1+height, radius)
+        context.lineTo(x1+radius, y1+height)
+        context.arcTo(x1, y1+height, x1, y1+height-radius, radius)
+        context.lineTo(x1, y1+radius)
+        context.arcTo(x1, y1, x1+radius, y1, radius)
+        context.closePath()
+    }
+    context.lineWidth = 3
+    context.strokeStyle = '#F9230B'
+    createRoundRect(context, 30, 30, 400, 200, 50)
+    context.stroke()
+</script>
+</body>
+</html>

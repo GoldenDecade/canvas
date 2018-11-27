@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ADACB0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="700">
+    你的浏览器还不支持canvas
+</canvas>
+<script>
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+//arc(x, y, r, startAngle, endAngle, counterclockwise)  counterclockwise默认为false，即默认为顺时针
+    context.strokeStyle = '#F22D0D'
+    context.lineWidth = 2
+//    绘制圆
+    context.beginPath()
+    context.arc(100, 100, 40, 0, Math.PI*2)
+    context.stroke()
+
+//    绘制半圆，顺时针
+    context.beginPath()
+    context.arc(300, 100, 40, 0, Math.PI, false)
+    context.stroke()
+
+//    绘制半圆 逆时针
+    context.beginPath()
+    context.arc(200, 100, 40, 0, Math.PI, true)
+    context.stroke()
+
+//    绘制封闭半圆
+    context.beginPath()
+    context.arc(400, 100, 40, 0, Math.PI)
+//    context.lineTo(440, 100)
+    context.closePath() // 创建从当前点回到起始点的路径
+    context.stroke()
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ADACB0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="700">
+    你的浏览器还不支持canvas
+</canvas>
+<script>
+    // context.rect(x, y, width, height) 定义矩形的路径
+    // context.fillRect(x, y, width, height) 直接绘制出填充的矩形
+    // context.strokeRect(x, y, width, height) 直接绘制出矩形边框
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+
+    //rect
+    context.rect(10, 20, 100, 150)
+    context.lineWidth = 2
+    context.fillStyle = '#3EE4CB'
+    context.strokeStyle = '#F5270B'
+    context.fill() // 填充当前绘图（路径）  先fill，再stroke
+    context.stroke() // 绘制已定义的路径
+
+    // stroke和fill绘制的前后顺序： 如果fill后面绘制，
+    // 那么当stroke边框较大时，会明显的把stroke()绘制出的边框遮住一半（所以要先fill再stroke）
+
+
+    // fillRect
+
+    context.fillStyle = '#1424DE'
+    context.fillRect(200, 20, 100, 150)
+
+    // strokeRect
+//    context.strokeStyle = '#F5270B'  // 不写的话，沿用之前的
+    context.strokeRect(400, 20, 100, 150)
+
+    // 同时使用fillRect、strokeRect
+//    context.fillStyle = '#1424DE'
+//    context.strokeStyle = '#F5270B'
+    context.strokeRect(600, 20, 100, 150)
+    context.fillRect(600, 20, 100, 150)
+
+
+//    清除矩形区域： context.clearRect(x, y, width, height)
+    context.clearRect(50, 50, 600, 80)
+
+</script>
+</body>
+</html>

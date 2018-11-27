@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ADACB0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="900" height="700">
+    你的浏览器还不支持canvas
+</canvas>
+<script>
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+    // 对图形进行变化后，接下来的一次绘图是紧接着上一次的状态的，如果需要回到初始状态，用save和restore来保存和恢复当前状态
+    // 图形变换
+    // translate(x, y)
+    context.save() // 第一次保存初始状态
+    context.fillStyle = '#1424DE'
+    context.translate(10, 10)
+    context.fillRect(0, 0, 200, 200)
+    /*context.strokeStyle = '#F5270B'
+    context.strokeRect(0, 0, 200, 200)*/
+    context.restore() // 恢复到第一次保存的初始状态
+
+    // scale(x, y)   将所有坐标都进行缩放
+    context.save()
+    context.fillStyle = '#F5270B'
+    context.scale(0.5, 0.5)
+    context.fillRect(20, 420, 200, 200)
+    context.restore()
+
+    // rotate(angle)  angle为坐标轴旋转的角度
+    context.fillStyle = '#18EB0F'
+    context.rotate(Math.PI / 4)
+    context.fillRect(300, 10, 200, 200)
+    context.restore()
+
+
+</script>
+</body>
+</html>

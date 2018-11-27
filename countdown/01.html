@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        canvas {
+            margin: 100px auto 0;
+            display: block;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="300" height="300"></canvas>
+<script>
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+
+    context.arc(150,150,50,0,Math.PI*2,true); // 绘制
+    context.strokeStyle = 'red'
+    context.stroke()
+
+//    context.moveTo(190, 150)
+    context.beginPath()
+    context.arc(150, 150, 40, 0, Math.PI, true)
+    var lrd = context.createLinearGradient(20, 10, 10, 20);
+
+
+    lrd.addColorStop("0", "#2661DD");
+
+
+    lrd.addColorStop("0.5", "#40ED94");
+
+    lrd.addColorStop("1.0", "#5956CC");
+
+
+    context.lineWidth = 10
+    context.strokeStyle = lrd
+    context.stroke()
+
+    context.beginPath()
+    context.arc(150, 150, 40, Math.PI, Math.PI*2, true)
+//    context.strokeStyle = 'green'
+    context.stroke()
+
+    context.beginPath()
+    context.lineTo(0, 0)
+    context.lineTo(0, 100)
+    var lrd = context.createLinearGradient(0, 0, 10, 0)
+    lrd.addColorStop(0, '#1EF9F7')
+    /*lrd.addColorStop(0.25, '#FC0F31')
+    lrd.addColorStop(0.5, '#ECF811')
+    lrd.addColorStop(0.75, '#2F0AF1')*/
+    lrd.addColorStop(1, '#160303')
+    context.lineWidth = 20
+    context.strokeStyle = lrd
+    context.stroke()
+
+
+    function cir(x, y, r, startAngle, endAngle){
+        context.beginPath()
+        context.arc(x, y, r, startAngle, endAngle, false)
+        var lrd = context.createLinearGradient(x, y, 10, 0)
+        lrd.addColorStop(0, '#000')
+        /*lrd.addColorStop(0.25, '#FC0F31')
+        lrd.addColorStop(0.5, '#ECF811')
+        lrd.addColorStop(0.75, '#2F0AF1')*/
+        lrd.addColorStop(1, 'red')
+        context.lineWidth = 10
+        context.strokeStyle = lrd
+        context.stroke()
+    }
+    var count = 0;
+    var time = 6000, step = 25, startAngle, endAngle;
+
+    setTimeout(function f(){
+        if(count < time/step){
+            console.log(count * Math.PI*2/time*step);
+            cir(150, 150, 30, count * Math.PI*2/time*step, (++count) * Math.PI*2/time*step, false)
+            setTimeout(f, 25)
+        }
+    }, 25)
+
+</script>
+</body>
+</html>

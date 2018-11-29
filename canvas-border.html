@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="format-detection" content="telephone=no"/>
+  <title>Title</title>
+</head>
+<body>
+<canvas id="c1" width="200px" height="200px" style="background: pink;">
+  <span>不支持canvas浏览器</span>
+</canvas>
+<div style="background: pink;width: 100px; height: 100px;"></div>
+<script>
+  window.onload = function() {
+    var canvas = document.querySelector('#c1');
+    var ctx = canvas.getContext('2d')
+
+    //tip1:  边框是2px,导致模糊； 原因：普通浏览器画1px线条时遵循像素的起止范围，从而得到标准的细线； 但是canvas的画法不一样， 它的每条线都有一条无限细的“中线”，线条的宽度是从中线向两侧延伸的。
+    // ctx.strokeRect(50, 50, 100, 100);// 这样出来的边框是2px;
+    ctx.strokeRect(50.5, 50.5, 100, 100);// 这样出来的边框才是1px;
+
+
+
+  }
+</script>
+</body>
+</html>

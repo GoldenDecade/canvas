@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="format-detection" content="telephone=no"/>
+  <title>fillRect和strokeRect顺序不同的覆盖问题</title>
+</head>
+<body>
+<canvas id="c1" width="200px" height="200px" style="background: pink;">
+  <span>不支持canvas浏览器</span>
+</canvas>
+<div style="background: pink;width: 50px; height: 50px;"></div>
+<script>
+  window.onload = function() {
+    var canvas = document.querySelector('#c1');
+    var ctx = canvas.getContext('2d')
+    ctx.fillStyle = 'red';
+    ctx.strokeStyle = 'green'
+    ctx.lineWidth = '40'
+    ctx.lineJoin = 'bevel'; //边界连接点样式： miter（默认 直角） round(圆角)  bevel（斜角）
+    // tips2: 填充与绘制边框的顺序问题: 先写谁，谁先出来，后写的会覆盖先写的；
+    // 先写fillRect，那么就边框会覆盖内容（内容变窄，边框宽度不变）
+    // 先写strokeRect，那么就内容会覆盖边框（内容宽度不变，边框宽度变窄）
+
+    //尝试下面两行代码互换位置：
+                //tip1:  为什么strokeRect的x, y居然带有.5； 边框是2px,导致模糊； 原因：普通浏览器画1px线条时遵循像素的起止范围，从而得到标准的细线； 但是canvas的画法不一样， 它的每条线都有一条无限细的“中线”，线条的宽度是从中线向两侧延伸的。
+    ctx.strokeRect(50.5, 50.5, 100, 100);// 边框
+    ctx.fillRect(50, 50, 100, 100);// 填充
+
+    // ctx.fillStyle = 'yellow'
+    ctx.fillRect(70, 70, 100, 100);// 填充  会默认使用之前的颜色
+  }
+</script>
+</body>
+</html>

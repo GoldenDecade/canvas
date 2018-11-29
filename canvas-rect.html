@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="format-detection" content="telephone=no"/>
+  <title>画线&画图形</title>
+</head>
+<body>
+<canvas id="c1" width="200px" height="200px" style="background: pink;">
+  <span>不支持canvas浏览器</span>
+</canvas>
+<div style="background: pink;width: 50px; height: 50px;"></div>
+<script>
+  window.onload = function() {
+    var canvas = document.querySelector('#c1');
+    var ctx = canvas.getContext('2d')
+    // fillRect： beginPath + rect + fill + closePath
+    // strokeRect： beginPath + rect + stroke + closePath
+    ctx.beginPath()
+    ctx.rect(10, 10, 50, 50);
+    // ctx.fill();
+    ctx.stroke();
+    ctx.fill()
+
+    ctx.beginPath()
+    ctx.rect(20, 20, 100, 100)
+    ctx.stroke()
+    ctx.fillStyle = 'green'
+    ctx.fill();
+
+    ctx.clearRect(0, 0, 200, 200)
+  }
+</script>
+</body>
+</html>

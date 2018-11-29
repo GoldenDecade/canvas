@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="format-detection" content="telephone=no"/>
+  <title>用鼠标画图</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #ctx {
+      background-color: pink;
+      /*依照300  150等比例放缩*/
+      /*width: 500px;
+      height: 500px;*/
+    }
+  </style>
+</head>
+<body>
+<canvas id="ctx"></canvas>
+<script>
+  window.onload = function() {
+    var canvas = document.getElementById('ctx')
+    var ctx = canvas.getContext('2d');
+    var num = 0, direction = true;
+    ctx.fillRect(0, 0, 50, 50)
+    setInterval(function() {
+      if(num === 150) {
+        direction = false;
+      }else if(num === 0) {
+        direction = true;
+      }
+      if(direction) {
+        num++
+      }else {
+        num--
+      }
+      ctx.clearRect(0, 0, 200, 200)
+      ctx.fillRect(num, num, 50, 50)
+
+    }, 50)
+  }
+</script>
+</body>
+</html>
